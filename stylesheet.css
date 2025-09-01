@@ -1065,21 +1065,6 @@ transform: translateY(-80px);
     width: 70%;
   }
 
-  .quote-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 70%; 
-
-  }
-  
-  .quote-card {
-    grid-column: unset;
-    width: 100%;
-    margin: 0;
-    min-height: 150px;
-  }
-
   .background-container img {
     width: 100%; 
     border-radius: 5px;
@@ -1149,5 +1134,19 @@ transform: translateY(-80px);
    width: 100%;
    margin: 0;
  }
+
+  .quote-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 60%; 
+  }
+  
+  .quote-card {
+    grid-column: unset;
+    width: 100%;
+    margin: 0;
+    min-height: 150px;
+  }
 
 }
