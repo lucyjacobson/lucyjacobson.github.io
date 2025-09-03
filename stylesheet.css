@@ -970,6 +970,94 @@ transform: translateY(-80px);
 }
 
 
+
+.project-nav-footer {
+    padding: 10px 20px;
+    width: 65%;
+    margin: 60px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    text-decoration: none;
+}
+
+.project-nav-btn--next {
+    flex-direction: row-reverse;
+}
+
+.project-nav-text-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-nav-btn--next .project-nav-text-block {
+    text-align: right;
+}
+
+.project-nav-descriptor {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 2px;
+    transition: color 0.2s ease;
+}
+
+.project-nav-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+.project-nav-btn:hover,
+.project-nav-btn:hover .project-nav-descriptor,
+.project-nav-btn:hover .project-nav-name {
+    color: #3764E5;
+}
+
+
+
+
+
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Image inside the popup */
+.lightbox-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 0 20px #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
 /*RESPONSIVE*/
 
 @media (max-width: 600px) {
