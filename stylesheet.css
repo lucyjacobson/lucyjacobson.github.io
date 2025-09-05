@@ -1033,6 +1033,7 @@ transform: translateY(-80px);
 .popup-img {
     cursor: pointer;
     transition: transform 0.2s;
+    -webkit-tap-highlight-color: transparent; /* Remove blue highlight on mobile */
 }
 
 .popup-img:hover {
@@ -1048,6 +1049,7 @@ transform: translateY(-80px);
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.8);
+    touch-action: none; /* Prevent scrolling behind modal */
 }
 
 #modal-img {
@@ -1055,6 +1057,7 @@ transform: translateY(-80px);
     margin: 50px auto;
     max-width: 90%;
     max-height: 90%;
+    touch-action: none;
 }
 
 #close {
@@ -1064,6 +1067,8 @@ transform: translateY(-80px);
     color: white;
     font-size: 40px;
     cursor: pointer;
+    padding: 10px; /* Bigger touch target */
+    -webkit-tap-highlight-color: transparent;
 }
 
 #close:hover {
@@ -1216,6 +1221,23 @@ transform: translateY(-80px);
   .feature-roadmap{
     width: 60%;
   }
+
+#close {
+        font-size: 50px;
+        top: 10px;
+        right: 20px;
+        padding: 15px;
+    }
+    
+    #modal-img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 95%;
+        max-height: 85%;
+        margin: 0;
+    }
 }
 
 @media (max-width: 1000px) {
@@ -1252,5 +1274,22 @@ transform: translateY(-80px);
     margin: 0;
     min-height: 150px;
   }
+
+  #close {
+        font-size: 50px;
+        top: 10px;
+        right: 20px;
+        padding: 15px;
+    }
+    
+    #modal-img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 95%;
+        max-height: 85%;
+        margin: 0;
+    }
 
 }

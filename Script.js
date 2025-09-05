@@ -23,26 +23,50 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
 const modal = document.getElementById('modal');
 const modalImg = document.getElementById('modal-img');
 const close = document.getElementById('close');
+const backToTop = document.getElementById('backToTop');
 
-// Add click event to all images with class 'popup-img'
+// Add both click and touch events to all images with class 'popup-img'
 document.querySelectorAll('.popup-img').forEach(img => {
-    img.onclick = () => {
+    const openModal = () => {
         modal.style.display = 'block';
         modalImg.src = img.src;
-    }
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        
+        // Hide back to top button by removing the 'show' class
+        if (backToTop) {
+            backToTop.classList.remove('show');
+        }
+    };
+    
+    img.addEventListener('click', openModal);
+    img.addEventListener('touchend', openModal);
 });
 
-// Close modal
-close.onclick = () => modal.style.display = 'none';
-modal.onclick = (e) => {
-    if (e.target === modal) modal.style.display = 'none';
-}
+// Close modal function
+const closeModal = () => {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Restore scrolling
+    
+    // Restore back to top button visibility if page is scrolled down
+    if (backToTop && window.pageYOffset > 300) {
+        backToTop.classList.add('show');
+    }
+};
 
+// Close modal events
+close.addEventListener('click', closeModal);
+close.addEventListener('touchend', closeModal);
 
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+});
+
+modal.addEventListener('touchend', (e) => {
+    if (e.target === modal) closeModal();
+});
 
   // NAV HIGHLIGHT
   const nav = document.querySelector(".nav-links");
@@ -140,7 +164,6 @@ modal.onclick = (e) => {
   }
 
   // --- BACK TO TOP BUTTON ---
-  const backToTop = document.getElementById('backToTop');
   if (backToTop) {
     window.addEventListener('scroll', function() {
       if (window.pageYOffset > 300) {
@@ -227,5 +250,4 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCarousel();
   });
 });
-
 
