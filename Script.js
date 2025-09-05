@@ -23,51 +23,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Image popup on click ---
-  const images = document.querySelectorAll(".project-hero-image, .image-in-box");
 
-  images.forEach(image => {
-    image.addEventListener("click", () => {
-      const popup = document.createElement("div");
-      Object.assign(popup.style, {
-        position: "fixed",
-        top: "0",
-        left: "0",
-        width: "100%",
-        height: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.8)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        zIndex: "9999"
-      });
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modal-img');
+const close = document.getElementById('close');
 
-      const imgContainer = document.createElement("div");
-      if (image.classList.contains("image-in-box")) {
-        Object.assign(imgContainer.style, {
-          backgroundColor: "#F7F7F7",
-          padding: "10px",
-          borderRadius: "4px",
-          display: "inline-block"
-        });
-      }
+// Add click event to all images with class 'popup-img'
+document.querySelectorAll('.popup-img').forEach(img => {
+    img.onclick = () => {
+        modal.style.display = 'block';
+        modalImg.src = img.src;
+    }
+});
 
-      const popupImage = document.createElement("img");
-      popupImage.src = image.src;
-      popupImage.alt = image.alt || "";
-      Object.assign(popupImage.style, {
-        maxWidth: "90%",
-        maxHeight: "90%",
-        display: "block"
-      });
+// Close modal
+close.onclick = () => modal.style.display = 'none';
+modal.onclick = (e) => {
+    if (e.target === modal) modal.style.display = 'none';
+}
 
-      imgContainer.appendChild(popupImage);
-      popup.appendChild(imgContainer);
 
-      popup.addEventListener("click", () => popup.remove());
-      document.body.appendChild(popup);
-    });
-  });
 
   // NAV HIGHLIGHT
   const nav = document.querySelector(".nav-links");
