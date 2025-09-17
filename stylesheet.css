@@ -1033,7 +1033,7 @@ transform: translateY(-80px);
 .popup-img {
     cursor: pointer;
     transition: transform 0.2s;
-    -webkit-tap-highlight-color: transparent; /* Remove blue highlight on mobile */
+    -webkit-tap-highlight-color: transparent; 
 }
 
 .popup-img:hover {
@@ -1049,7 +1049,7 @@ transform: translateY(-80px);
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.8);
-    touch-action: none; /* Prevent scrolling behind modal */
+    touch-action: none; 
 }
 
 #modal-img {
@@ -1067,7 +1067,7 @@ transform: translateY(-80px);
     color: white;
     font-size: 40px;
     cursor: pointer;
-    padding: 10px; /* Bigger touch target */
+    padding: 10px; 
     -webkit-tap-highlight-color: transparent;
 }
 

@@ -28,14 +28,12 @@ const modalImg = document.getElementById('modal-img');
 const close = document.getElementById('close');
 const backToTop = document.getElementById('backToTop');
 
-// Add both click and touch events to all images with class 'popup-img'
 document.querySelectorAll('.popup-img').forEach(img => {
     const openModal = () => {
         modal.style.display = 'block';
         modalImg.src = img.src;
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        document.body.style.overflow = 'hidden'; 
         
-        // Hide back to top button by removing the 'show' class
         if (backToTop) {
             backToTop.classList.remove('show');
         }
@@ -45,18 +43,17 @@ document.querySelectorAll('.popup-img').forEach(img => {
     img.addEventListener('touchend', openModal);
 });
 
-// Close modal function
+
 const closeModal = () => {
     modal.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Restore scrolling
-    
-    // Restore back to top button visibility if page is scrolled down
+    document.body.style.overflow = 'auto'; 
+  
     if (backToTop && window.pageYOffset > 300) {
         backToTop.classList.add('show');
     }
 };
 
-// Close modal events
+// Close 
 close.addEventListener('click', closeModal);
 close.addEventListener('touchend', closeModal);
 
@@ -163,7 +160,7 @@ modal.addEventListener('touchend', (e) => {
     });
   }
 
-  // --- BACK TO TOP BUTTON ---
+  //  BACK TO TOP BUTTON 
   if (backToTop) {
     window.addEventListener('scroll', function() {
       if (window.pageYOffset > 300) {
@@ -192,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = container.querySelector('.prev');
     const nextBtn = container.querySelector('.next');
 
-    // Safety check to skip incomplete carousels
+
     if (!carousel || !imagesWrapper || !dotsContainer) {
       console.warn('Skipping: missing carousel structure in one of the containers.');
       return;
@@ -206,12 +203,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentIndex = 0;
 
-    // Ensure only the first image is active initially
     slides.forEach((slide, i) => {
       slide.classList.toggle('active', i === 0);
     });
 
-    // Create dot indicators
+
     dotsContainer.innerHTML = '';
     slides.forEach((_, i) => {
       const dot = document.createElement('span');
@@ -243,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updateCarousel();
     }
 
-    // Attach event listeners to nav buttons
+
     if (prevBtn) prevBtn.addEventListener('click', () => changeSlide(-1));
     if (nextBtn) nextBtn.addEventListener('click', () => changeSlide(1));
 
