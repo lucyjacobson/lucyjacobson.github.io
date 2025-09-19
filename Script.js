@@ -1,6 +1,5 @@
-//POP UP
-
 document.addEventListener("DOMContentLoaded", () => {
+  // INTRO TEXT ANIMATION
   const introText = document.querySelector('.intro-text p');
   if (introText) {
     const text = introText.innerHTML.trim();
@@ -23,146 +22,60 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modal-img');
-const close = document.getElementById('close');
-const backToTop = document.getElementById('backToTop');
+  //LOGO
+  const logo = document.getElementById('logo');
 
-document.querySelectorAll('.popup-img').forEach(img => {
+  logo.addEventListener('mouseover', () => {
+  logo.src = 'Assets/Logo/Logo.gif';
+  });
+
+  logo.addEventListener('mouseout', () => {
+  logo.src = 'Assets/Logo/Logo.png';
+  });
+
+  // POP-UP MODAL
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modal-img');
+  const close = document.getElementById('close');
+  const backToTop = document.getElementById('backToTop');
+
+  document.querySelectorAll('.popup-img').forEach(img => {
     const openModal = () => {
-        modal.style.display = 'block';
-        modalImg.src = img.src;
-        document.body.style.overflow = 'hidden'; 
-        
-        if (backToTop) {
-            backToTop.classList.remove('show');
-        }
+      modal.style.display = 'block';
+      modalImg.src = img.src;
+      document.body.style.overflow = 'hidden'; 
+      if (backToTop) backToTop.classList.remove('show');
     };
     
     img.addEventListener('click', openModal);
     img.addEventListener('touchend', openModal);
-});
-
-
-const closeModal = () => {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto'; 
-  
-    if (backToTop && window.pageYOffset > 300) {
-        backToTop.classList.add('show');
-    }
-};
-
-// Close 
-close.addEventListener('click', closeModal);
-close.addEventListener('touchend', closeModal);
-
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-});
-
-modal.addEventListener('touchend', (e) => {
-    if (e.target === modal) closeModal();
-});
-
-  // NAV HIGHLIGHT
-  const nav = document.querySelector(".nav-links");
-  if (!nav) return; 
-
-  const links = nav.querySelectorAll("a");
-  let currentActive = null;
-  let allowAnimation = true;
-
-  function updateHighlight(link, animate = true) {
-    const linkRect = link.getBoundingClientRect();
-    const navRect = nav.getBoundingClientRect();
-    const offsetX = linkRect.left - navRect.left;
-    const width = linkRect.width;
-
-    if (currentActive && currentActive !== link && animate) {
-      const currentIndex = Array.from(links).indexOf(currentActive);
-      const newIndex = Array.from(links).indexOf(link);
-
-      nav.classList.remove('slide-left', 'slide-right', 'animate');
-      void nav.offsetWidth; 
-
-      nav.classList.add(newIndex > currentIndex ? 'slide-right' : 'slide-left');
-      nav.classList.add('animate');
-    } else {
-      nav.classList.remove('animate');
-    }
-
-    nav.style.setProperty("--highlight-x", `${offsetX}px`);
-    nav.style.setProperty("--highlight-width", `${width}px`);
-    currentActive = link;
-  }
-
-  function setInitialActive() {
-    const currentPath = window.location.pathname.split('/').pop().toLowerCase();
-    links.forEach(link => {
-      const href = link.getAttribute("href").toLowerCase();
-      if (currentPath === href || (currentPath === "" && href === "work.html")) {
-        link.classList.add("active-button");
-        updateHighlight(link, false);
-      }
-    });
-
-    const blurbLines = document.querySelectorAll('.blurb-line');
-    blurbLines.forEach((line, index) => {
-      setTimeout(() => {
-        line.classList.add('visible');
-      }, 300 + index * 250);
-    });
-  }
-
-  function handleLinkClick(e) {
-    if (!allowAnimation) return;
-
-    const targetLink = e.currentTarget;
-
-    if (targetLink !== currentActive) {
-      e.preventDefault();
-
-      links.forEach(link => link.classList.remove("active-button"));
-      targetLink.classList.add("active-button");
-      updateHighlight(targetLink, true);
-
-      setTimeout(() => {
-        allowAnimation = false;
-        window.location.href = targetLink.href;
-      }, 300);
-    }
-  }
-
-  setInitialActive();
-  links.forEach(link => link.addEventListener("click", handleLinkClick));
-
-  setTimeout(() => {
-    allowAnimation = true;
-  }, 100);
-
-  window.addEventListener("resize", () => {
-    const active = nav.querySelector(".active-button");
-    if (active) updateHighlight(active, false);
   });
 
-  const logo = document.getElementById('logo');
-  if (logo) {
-    const staticSrc = logo.src;
-    const gifSrc = staticSrc.replace('Logo.png', 'Logo.gif');
+  const closeModal = () => {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; 
+    if (backToTop && window.pageYOffset > 300) {
+      backToTop.classList.add('show');
+    }
+  };
 
-    logo.addEventListener('mouseenter', () => {
-      logo.src = gifSrc;
+  if (close) {
+    close.addEventListener('click', closeModal);
+    close.addEventListener('touchend', closeModal);
+  }
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
     });
-
-    logo.addEventListener('mouseleave', () => {
-      logo.src = staticSrc;
+    modal.addEventListener('touchend', (e) => {
+      if (e.target === modal) closeModal();
     });
   }
 
-  //  BACK TO TOP BUTTON 
+  // BACK TO TOP BUTTON
   if (backToTop) {
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
       if (window.pageYOffset > 300) {
         backToTop.classList.add('show');
       } else {
@@ -170,80 +83,64 @@ modal.addEventListener('touchend', (e) => {
       }
     });
 
-    backToTop.addEventListener('click', function() {
+    backToTop.addEventListener('click', function () {
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
     });
   }
-});
 
-//CAROUSEL FOR BBM NEWSLETTERS
+  // CAROUSEL LOGIC
+  const carousels = document.querySelectorAll(".carousel");
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.textbox-style-2').forEach(container => {
-    const carousel = container.querySelector('.carousel');
-    const imagesWrapper = container.querySelector('.carousel-images');
-    const dotsContainer = container.querySelector('.carousel-dots');
-    const prevBtn = container.querySelector('.prev');
-    const nextBtn = container.querySelector('.next');
-
-
-    if (!carousel || !imagesWrapper || !dotsContainer) {
-      console.warn('Skipping: missing carousel structure in one of the containers.');
-      return;
-    }
-
-    const slides = imagesWrapper.querySelectorAll('.carousel-img');
-    if (!slides.length) {
-      console.warn('Skipping: no images found inside carousel-images.');
-      return;
-    }
+  carousels.forEach((carousel) => {
+    const slides = carousel.querySelectorAll(".carousel-slide");
+    const dotsContainer = carousel.nextElementSibling; 
+    const prevBtn = carousel.querySelector(".carousel-btn.prev");
+    const nextBtn = carousel.querySelector(".carousel-btn.next");
+    const carouselImages = carousel.querySelector(".carousel-images");
 
     let currentIndex = 0;
 
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === 0);
-    });
+    function createDots() {
+      dotsContainer.innerHTML = ""; 
+      for (let i = 0; i < slides.length; i++) {
+        const dot = document.createElement("span");
+        dot.classList.add("carousel-dot");
+        if (i === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => {
+          currentIndex = i;
+          showSlide(currentIndex);
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
 
-
-    dotsContainer.innerHTML = '';
-    slides.forEach((_, i) => {
-      const dot = document.createElement('span');
-      dot.classList.add('dot');
-      if (i === 0) dot.classList.add('active');
-
-      dot.addEventListener('click', () => {
-        currentIndex = i;
-        updateCarousel();
-      });
-
-      dotsContainer.appendChild(dot);
-    });
-
-    const dots = dotsContainer.querySelectorAll('.dot');
-
-    function updateCarousel() {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === currentIndex);
-      });
-
+    function showSlide(index) {
+      const slideWidth = carousel.clientWidth;
+      carouselImages.style.transform = `translateX(-${index * slideWidth}px)`;
+      const dots = dotsContainer.querySelectorAll(".carousel-dot");
       dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentIndex);
+        dot.classList.toggle("active", i === index);
       });
     }
 
-    function changeSlide(direction) {
-      currentIndex = (currentIndex + direction + slides.length) % slides.length;
-      updateCarousel();
-    }
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(currentIndex);
+    });
 
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    });
 
-    if (prevBtn) prevBtn.addEventListener('click', () => changeSlide(-1));
-    if (nextBtn) nextBtn.addEventListener('click', () => changeSlide(1));
+    window.addEventListener("resize", () => showSlide(currentIndex));
 
-    updateCarousel();
+    createDots();
+    showSlide(currentIndex);
   });
 });
+
 
