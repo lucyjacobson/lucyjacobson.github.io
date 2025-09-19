@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  //LOGO
+  //LOGOOOO
   const logo = document.getElementById('logo');
 
   logo.addEventListener('mouseover', () => {
