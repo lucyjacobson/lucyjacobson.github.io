@@ -1412,3 +1412,79 @@ transform: translateY(-80px);
     }
 
 }
+
+@media (min-width: 1024px) {
+  .header-container {
+    width: 50%;
+  }
+
+  .intro-text {
+    font-size: 2.2rem;
+    margin-top: 120px;
+    margin-bottom: 100px;
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 35px;
+  }
+
+  .project-description {
+    font-size: 1.2rem;
+  }
+
+  .flip-card {
+    width: 40%;
+  }
+
+  .project-overview {
+    width: 60%;
+    gap: 40px;
+  }
+
+  .hero-image-container {
+    width: 60%;
+  }
+
+  .project-info-container,
+  .project-info-container-extra,
+  .case-study-image,
+  .insight-container,
+  .project-goals-card,
+  .pause-card,
+  .feature-roadmap {
+    width: 60%;
+  }
+
+  .insight-title {
+    font-size: 20px;
+  }
+
+  .insight-text {
+    font-size: 16px;
+  }
+
+  .pov-text, .hmw-text {
+    font-size: 20px;
+  }
+
+  .carousel {
+    width: 50vw !important;
+  }
+
+  .carousel-dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+  }
+
+  .quote-cards-4,
+  .quote-cards {
+    width: 50%;
+  }
+
+  .quote-card {
+    min-height: 180px;
+  }
+}
